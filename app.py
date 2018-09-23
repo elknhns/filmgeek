@@ -53,20 +53,28 @@ def callback():
         abort(400)
     return 'OK'
 
+#@handler.add(MessageEvent, message=TextMessage)
+#def handle_message(event):
+ #   text = event.message.text #simplify for receove message
+  #  sender = event.source.user_id #get usesenderr_id
+   # gid = event.source.sender_id #get group_id
+   # profile = line_bot_api.get_profile(sender)
+  #  if text=="Yemima":
+  #      line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Love You Bebbb <3'))
+  #  if text=="Vivat TC":
+  #      line_bot_api.reply_message(event.reply_token,TextSendMessage(text='TC! TC! TC!'))
+   # if text=="Vivat":
+   #     line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Hidup ITS! Hidup ITS! Hidup ITS!'))
+
+    #line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Halo '+profile.display_name+'\nKata Kunci Tidak Diketahui :) \nKetik "menu" untuk mengetahui menu yang tersedia'))
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text = event.message.text #simplify for receove message
     sender = event.source.user_id #get usesenderr_id
     gid = event.source.sender_id #get group_id
     profile = line_bot_api.get_profile(sender)
-    if text=="Yemima":
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Love You Bebbb <3'))
-    if text=="Vivat TC":
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='TC! TC! TC!'))
-    if text=="Vivat":
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Hidup ITS! Hidup ITS! Hidup ITS!'))
-
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Halo '+profile.display_name+'\nKata Kunci Tidak Diketahui :) \nKetik "menu" untuk mengetahui menu yang tersedia'))
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Halo '+profile.display_name+'\nApa maksudmu dengan "'+text+'"?'))
 
 import os
 if __name__ == "__main__":
