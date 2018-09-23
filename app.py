@@ -65,7 +65,6 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='TC! TC! TC!'))
     if text=="Vivat":
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Hidup ITS! Hidup ITS! Hidup ITS!'))
-    if text==
 
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Halo '+profile.display_name+'\nKata Kunci Tidak Diketahui :) \nKetik "menu" untuk mengetahui menu yang tersedia'))
 
