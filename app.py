@@ -71,13 +71,13 @@ def callback():
         abort(400)
     return 'OK'
 
-@handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-    text = event.message.text #simplify for receove message
-    sender = event.source.user_id #get usesenderr_id
-    gid = event.source.sender_id #get group_id
-    profile = line_bot_api.get_profile(sender)
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Halo '+profile.display_name+'\nApa maksudmu bilang "'+text+'"?'))
+# @handler.add(MessageEvent, message=TextMessage)
+# def handle_message(event):
+#     text = event.message.text #simplify for receove message
+#     sender = event.source.user_id #get usesenderr_id
+#     gid = event.source.sender_id #get group_id
+#     profile = line_bot_api.get_profile(sender)
+#     line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Halo '+profile.display_name+'\nApa maksudmu bilang "'+text+'"?'))
 
 import os
 if __name__ == "__main__":
