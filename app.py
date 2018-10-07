@@ -68,7 +68,11 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    data=text.split('-')
+    text = event.message.text #simplify for receove message
+    sender = event.source.user_id #get usesenderr_id
+    gid = event.source.sender_id #get group_id
+    profile = line_bot_api.get_profile(sender)
+    data = text.split('-')
     if(data[0] == 'tambah'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = inputmhs(data[1],data[2],data[3])))
 
