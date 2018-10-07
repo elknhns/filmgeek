@@ -53,11 +53,6 @@ def inputmhs(nrp, nama, kosan):
     elif(flag == "0"):
         return 'Data gagal dimasukkan\n'
 
-def handle_message(event):
-
-    data=text.split('-')
-    if(data[0] == 'tambah'):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = inputmhs(data[1],data[2],data[3])))
 
 # Post Request
 @app.route("/callback", methods=['POST'])
@@ -71,7 +66,13 @@ def callback():
         abort(400)
     return 'OK'
 
-# @handler.add(MessageEvent, message=TextMessage)
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    data=text.split('-')
+    if(data[0] == 'tambah'):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = inputmhs(data[1],data[2],data[3])))
+
+
 # def handle_message(event):
 #     text = event.message.text #simplify for receove message
 #     sender = event.source.user_id #get usesenderr_id
