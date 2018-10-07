@@ -42,7 +42,7 @@ handler = WebhookHandler('46aa35d5668f6a13ee7c871544287c91')
 notes = {}
 
 #INPUT DATA MHS
-def inputmhs(nrp, nama, kosan):
+def inputmhs(nrp, name, alamat):
     r = requests.post("http://www.aditmasih.tk/api_kelompok2/insert.php", data={'nrp': nrp, 'name': name, 'alamat': alamat})
     data = r.json()
 
