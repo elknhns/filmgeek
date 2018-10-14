@@ -46,7 +46,7 @@ def caritmn(nrp):
     URLtmn = "http://www.aditmasih.tk/api_hans/show.php?nrp=" + nrp
     r = requests.get(URLtmn)
     data = r.json()
-    err = "Data tidak ditemukan"
+    err = "Datanya nggak ketemu bro. Mungkin lo ada salah ketik."
 
     flag = data['flag']
     if(flag == "1"):
@@ -69,7 +69,7 @@ def inputtmn(nrp, nama, jenis_kelamin, nomor_hp):
     flag = data['flag']
    
     if(flag == "1"):
-        return 'Data si '+ nama +' berhasil dimasukin. Gila temen lu nambah.\n'
+        return 'Data si '+ nama +' berhasil dimasukin. Gila temen lu nambah.'
     elif(flag == "0"):
         return 'Data gagal dimasukin. Coba lagi deh.'
 
@@ -86,19 +86,19 @@ def alltmn():
             nama = data['data_teman'][int(i)]['nama']
             jenis_kelamin = data['data_teman'][int(i)]['jenis_kelamin']
             nomor_hp = data['data_teman'][int(i)]['nomor_hp']
-            hasil=hasil+str(i+1)
-            hasil=hasil+".\nNrp : "
-            hasil=hasil+nrp
-            hasil=hasil+"\nNama : "
-            hasil=hasil+nama
-            hasil=hasil+"\nGender : "
-            hasil=hasil+jenis_kelamin
-            hasil=hasil+"\nNomor HP : "
-            hasil=hasil+nomor_hp
-            hasil=hasil+"\n"
+            hasil = hasil + str(i+1)
+            hasil = hasil + ".\nNrp : "
+            hasil = hasil + nrp
+            hasil = hasil + "\nNama : "
+            hasil = hasil + nama
+            hasil = hasil + "\nGender : "
+            hasil = hasil + jenis_kelamin
+            hasil = hasil + "\nNomor HP : "
+            hasil = hasil + nomor_hp
+            hasil = hasil + "\n"
         return hasil
     elif(flag == "0"):
-        return 'Data gagal dimasukkan. Mungkin emang lo nggak punya teman.\n'
+        return 'Data gagal ditampilin. Mungkin emang lo nggak punya teman.'
 
 
 #DELETE DATA MHS
@@ -109,15 +109,15 @@ def hapustmn(nrp):
     flag = data['flag']
    
     if(flag == "1"):
-        return 'Data '+ nrp +' berhasil dihapus. Selamat lo berhasil move on dari si dia.\n'
+        return 'Data '+ nrp +' berhasil dihapus. Selamat lo berhasil move on dari si dia.'
     elif(flag == "0"):
-        return 'Data gagal dihapus bro. Gagal move on lo.\n'
+        return 'Data gagal dihapus bro. Gagal move on lo.'
 
 def updatetmn(nrpLama, nrp, nama, jenis_kelamin, nomor_hp):
     URLtmn = "http://www.aditmasih.tk/api_hans/show.php?nrp=" + nrpLama
     r = requests.get(URLtmn)
     data = r.json()
-    err = "Nggak nemu bos. Salah ketik mungkin."
+    err = "Nggak nemu bos. Salah ketik kali ya."
     nrp_lama=nrpLama
     flag = data['flag']
     if(flag == "1"):
@@ -126,9 +126,9 @@ def updatetmn(nrpLama, nrp, nama, jenis_kelamin, nomor_hp):
         flag = data['flag']
 
         if(flag == "1"):
-            return 'Data temen lo, si '+nama+'dengan nrp '+nrp_lama+'ini, berhasil diupdate.\n'
+            return 'Data temen lo, si '+nama+' dengan nrp '+nrp_lama+' ini, berhasil diupdate.'
         elif(flag == "0"):
-            return 'Data gagal diupdate bro. Mungkin lo belum konek ke WiFi TC.\n'
+            return 'Data gagal diupdate bro. Mungkin lo belum konek ke WiFi TC.'
 
     elif(flag == "0"):
         return err
