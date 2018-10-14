@@ -111,7 +111,7 @@ def hapustmn(nrp):
     if(flag == "1"):
         return 'Data '+ nrp +' berhasil dihapus. Selamat lo berhasil move on dari si dia.'
     elif(flag == "0"):
-        return 'Data gagal dihapus bro. Gagal move on lo.'
+        return 'Data gagal dihapus bro. Cek menu buat cek format yang benar.'
 
 def updatetmn(nrpLama, nrp, nama, jenis_kelamin, nomor_hp):
     URLtmn = "http://www.aditmasih.tk/api_hans/show.php?nrp=" + nrpLama
@@ -163,11 +163,11 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = updatetmn(data[1],data[2],data[3],data[4],data[5])))
     elif(data[0] == 'Semua'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = alltmn()))
-    elif(data[0] == 'Menu'):
-        menu = "1. Cari-[nrp]\nIni buat lo nyari data temen lo pake nrp\n\n2. Tambah-[nrp]-[nama]-[jenis kelamin(L/P)]-[no hp]\nSemisal lo punya temen baru, ini buat masukin ke data dia ke database lo, biar nggak lupa.\n\n3. Hapus-[nrp]\nIni buat menghapus temen lo yang mungkin lo ga suka.\n\n4. Ganti-[nrp lama]-[nrp baru]-[nama baru]-[jenis kelamin baru]-[no hp baru]\nSiapa tau temen lo uda berubah, pastiin datanya lo ganti juga.\n\n5. Semua\nIni buat nampilin seluruh data temen lo (kalo lo punya temen)."
+    elif(data[0] == 'Desc'):
+        menu = "Ini bot khusus buat daftar temen-temen lo. Lo bisa input printah-printah seperti ini:\n\n1. Cari-[nrp]\nIni buat lo nyari data temen lo pake nrp\n\n2. Tambah-[nrp]-[nama]-[jenis kelamin(L/P)]-[no hp]\nSemisal lo punya temen baru, ini buat masukin ke data dia ke database lo, biar nggak lupa.\n\n3. Hapus-[nrp]\nIni buat menghapus temen lo yang mungkin lo ga suka.\n\n4. Ganti-[nrp lama]-[nrp baru]-[nama baru]-[jenis kelamin baru]-[no hp baru]\nSiapa tau temen lo uda berubah, pastiin datanya lo ganti juga.\n\n5. Semua\nIni buat nampilin seluruh data temen lo (kalo lo punya temen).\n\nSebatas itu aja yang bisa lo printahin ke gua. Selain itu gua ga ngerti. Gua bukan jin."
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = menu))
     else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "Ga ketangkep bos"))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "Hah? Apa? Ga nangkep bos"))
 
 # def handle_message(event):
 #     text = event.message.text #simplify for receove message
