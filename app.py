@@ -63,7 +63,7 @@ def caritmn(nrp):
 
 #INPUT DATA TMN
 def inputtmn(nrp, nama, jenis_kelamin, nomor_hp):
-    r = requests.post("http://www.aditmasih.tk/api_hans/insert.php", data={'nrp': nrp, 'nama': nama, 'jenis_kelamin': jenis_kelamin})
+    r = requests.post("http://www.aditmasih.tk/api_hans/insert.php", data={'nrp': nrp, 'nama': nama, 'jenis_kelamin': jenis_kelamin, 'nomor_hp': nomor_hp})
     data = r.json()
 
     flag = data['flag']
@@ -71,7 +71,7 @@ def inputtmn(nrp, nama, jenis_kelamin, nomor_hp):
     if(flag == "1"):
         return 'Data si '+ name +' berhasil dimasukin. Gila temen lu nambah.\n'
     elif(flag == "0"):
-        return 'Data gagal dimasukin. Coba lagi deh.\n'
+        return 'Data gagal dimasukin. Coba lagi deh.'
 
 def alltmn():
     r = requests.post("http://www.aditmasih.tk/api_hans/all.php")
