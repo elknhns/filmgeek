@@ -80,7 +80,7 @@ def alltmn():
     flag = data['flag']
    
     if(flag == "1"):
-        hasil = ""
+        hasil = "Ini daftar semua --orang yang cuma sebatas-- temen lo sejauh ini:\n"
         for i in range(0,len(data['data_teman'])):
             nrp = data['data_teman'][int(i)]['nrp']
             nama = data['data_teman'][int(i)]['nama']
