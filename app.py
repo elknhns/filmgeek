@@ -69,7 +69,7 @@ def inputtmn(nrp, nama, jenis_kelamin, nomor_hp):
     flag = data['flag']
    
     if(flag == "1"):
-        return 'Data si '+ name +' berhasil dimasukin. Gila temen lu nambah.\n'
+        return 'Data si '+ nama +' berhasil dimasukin. Gila temen lu nambah.\n'
     elif(flag == "0"):
         return 'Data gagal dimasukin. Coba lagi deh.'
 
