@@ -106,7 +106,7 @@ def updatemhs(nrpLama,nrp,nama,jenis_kelamin,nomor_hp):
         flag = data['flag']
 
         if(flag == "1"):
-            return 'Data temen lo, si '+nrp_lama+'ini, berhasil diupdate.\n'
+            return 'Data temen lo, si '+nama+'dengan nrp '+nrp_lama+'ini, berhasil diupdate.\n'
         elif(flag == "0"):
             return 'Data gagal diupdate bro. Mungkin lo belum konek ke WiFi TC.\n'
 
