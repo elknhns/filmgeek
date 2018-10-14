@@ -103,17 +103,17 @@ def alltmn():
 
 #DELETE DATA MHS
 def hapustmn(nrp):
-    r = requests.post("http://www.aditmasih.tk/api_hans/delete.php", data={'nrp': nrp})
+    r = requests.post("http://www.aditmasih.tk/api_hans/delete.php", data = {'nrp': nrp})
     data = r.json()
 
     flag = data['flag']
    
     if(flag == "1"):
-        return 'Data '+nrp+' berhasil dihapus. Selamat lo berhasil move on dari si dia.\n'
+        return 'Data '+ nrp +' berhasil dihapus. Selamat lo berhasil move on dari si dia.\n'
     elif(flag == "0"):
         return 'Data gagal dihapus bro. Gagal move on lo.\n'
 
-def updatetmn(nrpLama,nrp,nama,jenis_kelamin,nomor_hp):
+def updatetmn(nrpLama, nrp, nama, jenis_kelamin, nomor_hp):
     URLtmn = "http://www.aditmasih.tk/api_hans/show.php?nrp=" + nrpLama
     r = requests.get(URLtmn)
     data = r.json()
@@ -152,20 +152,20 @@ def handle_message(event):
     sender = event.source.user_id #get usesenderr_id
     gid = event.source.sender_id #get group_id
     profile = line_bot_api.get_profile(sender)
-    data = text.split('/')
-    if(data[0]=='Cari'):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=caritmn(data[1])))
+    data = text.split('-')
+    if(data[0] == 'Cari'):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = caritmn(data[1])))
     elif(data[0] == 'Tambah'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = inputtmn(data[1],data[2],data[3],data[4])))
-    elif(data[0]=='Hapus'):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=hapustmn(data[1])))
-    elif(data[0]=='Ganti'):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=updatetmn(data[1],data[2],data[3],data[4],data[5])))
-    elif(data[0]=='Semua'):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=alltmn()))
-    elif(data[0]=='Menu'):
-        menu = "1. Cari/[nrp]\nIni buat lo nyari data temen lo pake nrp\n\n2. Tambah/[nrp]/[nama]/[jenis kelamin(L/P)]/[no hp]\nSemisal lo punya temen baru, ini buat masukin ke data dia ke database lo, biar nggak lupa.\n\n3. Hapus/[nrp]\nIni buat menghapus temen lo yang mungkin lo ga suka.\n\n4. Ganti/[nrp lama]/[nrp baru]/[nama baru]/[jenis kelamin baru]/[no hp baru]\nSiapa tau temen lo uda berubah, pastiin datanya lo ganti juga.\n\n5. Semua\nIni buat nampilin seluruh data temen lo (kalo lo punya temen)."
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=menu))
+    elif(data[0] == 'Hapus'):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = hapustmn(data[1])))
+    elif(data[0] == 'Ganti'):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = updatetmn(data[1],data[2],data[3],data[4],data[5])))
+    elif(data[0] == 'Semua'):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = alltmn()))
+    elif(data[0] == 'Menu'):
+        menu = "1. Cari-[nrp]\nIni buat lo nyari data temen lo pake nrp\n\n2. Tambah-[nrp]-[nama]-[jenis kelamin(L/P)]-[no hp]\nSemisal lo punya temen baru, ini buat masukin ke data dia ke database lo, biar nggak lupa.\n\n3. Hapus-[nrp]\nIni buat menghapus temen lo yang mungkin lo ga suka.\n\n4. Ganti-[nrp lama]-[nrp baru]-[nama baru]-[jenis kelamin baru]-[no hp baru]\nSiapa tau temen lo uda berubah, pastiin datanya lo ganti juga.\n\n5. Semua\nIni buat nampilin seluruh data temen lo (kalo lo punya temen)."
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = menu))
 
 # def handle_message(event):
 #     text = event.message.text #simplify for receove message
