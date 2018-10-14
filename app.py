@@ -55,7 +55,7 @@ def caritmn(nrp):
         jenis_kelamin = data['data_teman'][0]['jenis_kelamin']
         nomor_hp = data['data_teman'][0]['nomor_hp']
 
-        data= "Nama : "+nama+"\nNRP : "+nrp+"\nGender : "+jenis_kelamin+"\nNo. HP : "+nomor_hp
+        data= "Nih yang gua temuin:\nNama : "+nama+"\nNRP : "+nrp+"\nGender : "+jenis_kelamin+"\nNo. HP : "+nomor_hp
         return data
 
     elif(flag == "0"):
