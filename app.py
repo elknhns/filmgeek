@@ -42,24 +42,24 @@ handler = WebhookHandler('46aa35d5668f6a13ee7c871544287c91')
 notes = {}
 
 # #REQUEST DATA ADMIN RPL
-# def caritmn(nrp):
-#     URLtmn = "http://www.aditmasih.tk/api_hans/show.php?nrp=" + nrp
-#     r = requests.get(URLtmn)
-#     data = r.json()
-#     err = "Data tidak ditemukan"
+def caritmn(nrp):
+    URLtmn = "http://www.aditmasih.tk/api_hans/show.php?nrp=" + nrp
+    r = requests.get(URLtmn)
+    data = r.json()
+    err = "Data tidak ditemukan"
 
-#     flag = data['flag']
-#     if(flag == "1"):
-#         nrp = data['data_teman'][0]['nrp']
-#         nama = data['data_teman'][0]['nama']
-#         jenis_kelamin = data['data_teman'][0]['jenis_kelamin']
-#         nomor_hp = data['data_teman'][0]['nomor_hp']
+    flag = data['flag']
+    if(flag == "1"):
+        nrp = data['data_teman'][0]['nrp']
+        nama = data['data_teman'][0]['nama']
+        jenis_kelamin = data['data_teman'][0]['jenis_kelamin']
+        nomor_hp = data['data_teman'][0]['nomor_hp']
 
-#         data= "Nama : "+nama+"\nNRP : "+nrp+"\nGender : "+jenis_kelamin+"\nNo. HP : "+nomor_hp
-#         return data
+        data= "Nama : "+nama+"\nNRP : "+nrp+"\nGender : "+jenis_kelamin+"\nNo. HP : "+nomor_hp
+        return data
 
-#     elif(flag == "0"):
-#         return err
+    elif(flag == "0"):
+        return err
 
 #INPUT DATA TMN
 def inputtmn(nrp, nama, jenis_kelamin, nomor_hp):
@@ -121,7 +121,7 @@ def updatetmn(nrpLama, nrp, nama, jenis_kelamin, nomor_hp):
     nrp_lama=nrpLama
     flag = data['flag']
     if(flag == "1"):
-        r = requests.post("http://www.aditmasih.tk/api_hans/update.php", data={'nrp': nrp, 'nama': nama, 'jenis_kelamin': jenis_kelamin, 'nomor_hp' = nomor_hp, 'nrp_lama':nrp_lama})
+        r = requests.post("http://www.aditmasih.tk/api_hans/update.php", data={'nrp': nrp, 'nama': nama, 'jenis_kelamin': jenis_kelamin, 'nomor_hp': nomor_hp, 'nrp_lama':nrp_lama})
         data = r.json()
         flag = data['flag']
 
