@@ -95,7 +95,7 @@ def alltmn():
             hasil = hasil + jenis_kelamin
             hasil = hasil + "\nNomor HP : "
             hasil = hasil + str(nomor_hp)
-            hasil = hasil + "\n"
+            hasil = hasil + "\n\n"
         return hasil
     elif(flag == "0"):
         return 'Data gagal ditampilin. Mungkin emang lo nggak punya teman.'
