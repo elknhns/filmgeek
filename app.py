@@ -41,6 +41,26 @@ handler = WebhookHandler('46aa35d5668f6a13ee7c871544287c91')
 #===========[ NOTE SAVER ]=======================
 notes = {}
 
+# #REQUEST DATA ADMIN RPL
+def show(nrp):
+    URLtmn = "http://www.aditmasih.tk/api_hans/show.php?nrp=" + nrp
+    r = requests.get(URLtmn)
+    data = r.json()
+    err = "Data tidak ditemukan"
+
+    flag = data['flag']
+    if(flag == "1"):
+        nrp = data['data_teman'][0]['nrp']
+        nama = data['data_teman'][0]['nama']
+        jenis_kelamin = data['data_teman'][0]['jenis_kelamin']
+        nomor_hp = data['data_teman'][0]['nomor_hp']
+
+        data= "Nama : "+nama+"\nNRP : "+nrp+"\nGender : "+jenis_kelamin+"\nNo. HP : "+nomor_hp
+        return data
+
+    elif(flag == "0"):
+        return err
+
 #INPUT DATA TMN
 def inputtmn(nrp, nama, jenis_kelamin, nomor_hp):
     r = requests.post("http://www.aditmasih.tk/api_hans/insert.php", data={'nrp': nrp, 'nama': nama, 'jenis_kelamin': jenis_kelamin})
@@ -62,10 +82,10 @@ def allmhs():
     if(flag == "1"):
         hasil = ""
         for i in range(0,len(data['data_teman'])):
-            nrp = data['data_teman'][int(i)][0]
-            nama = data['data_teman'][int(i)][2]
-            jenis_kelamin = data['data_teman'][int(i)][4]
-            nomor_hp = data['data_teman'][int(i)][6]
+            nrp = data['data_teman'][int(i)]['nrp']
+            nama = data['data_teman'][int(i)]['nama']
+            jenis_kelamin = data['data_teman'][int(i)]['jenis_kelamin']
+            nomor_hp = data['data_teman'][int(i)]['nomor_hp']
             hasil=hasil+str(i+1)
             hasil=hasil+".\nNrp : "
             hasil=hasil+nrp
