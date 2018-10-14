@@ -41,17 +41,77 @@ handler = WebhookHandler('46aa35d5668f6a13ee7c871544287c91')
 #===========[ NOTE SAVER ]=======================
 notes = {}
 
-#INPUT DATA MHS
-def inputmhs(nrp, name, alamat):
-    r = requests.post("http://www.aditmasih.tk/api_kelompok2/insert.php", data={'nrp': nrp, 'name': name, 'alamat': alamat})
+#INPUT DATA TMN
+def inputtmn(nrp, nama, jenis_kelamin, nomor_hp):
+    r = requests.post("http://www.aditmasih.tk/api_hans/insert.php", data={'nrp': nrp, 'nama': nama, 'jenis_kelamin': jenis_kelamin})
     data = r.json()
 
     flag = data['flag']
    
     if(flag == "1"):
-        return 'Data '+ name +' berhasil dimasukkan\n'
+        return 'Data si '+ name +' berhasil dimasukin. Gila temen lu nambah.\n'
     elif(flag == "0"):
-        return 'Data gagal dimasukkan\n'
+        return 'Data gagal dimasukin. Coba lagi deh.\n'
+
+def allmhs():
+    r = requests.post("http://www.aditmasih.tk/api_hans/all.php")
+    data = r.json()
+
+    flag = data['flag']
+   
+    if(flag == "1"):
+        hasil = ""
+        for i in range(0,len(data['data_teman'])):
+            nrp = data['data_teman'][int(i)][0]
+            nama = data['data_teman'][int(i)][2]
+            jenis_kelamin = data['data_teman'][int(i)][4]
+            nomor_hp = data['data_teman'][int(i)][6]
+            hasil=hasil+str(i+1)
+            hasil=hasil+".\nNrp : "
+            hasil=hasil+nrp
+            hasil=hasil+"\nNama : "
+            hasil=hasil+nama
+            hasil=hasil+"\nGender : "
+            hasil=hasil+jenis_kelamin
+            hasil=hasil+"\nNomor HP : "
+            hasil=hasil+nomor_hp
+            hasil=hasil+"\n"
+        return hasil
+    elif(flag == "0"):
+        return 'Data gagal dimasukkan. Mungkin emang lo nggak punya teman.\n'
+
+
+#DELETE DATA MHS
+def hapusmhs(nrp):
+    r = requests.post("http://www.aditmasih.tk/api_hans/delete.php", data={'nrp': nrp})
+    data = r.json()
+
+    flag = data['flag']
+   
+    if(flag == "1"):
+        return 'Data '+nrp+' berhasil dihapus. Selamat lo berhasil move on dari si dia.\n'
+    elif(flag == "0"):
+        return 'Data gagal dihapus bro. Gagal move on lo.\n'
+
+def updatemhs(nrpLama,nrp,nama,jenis_kelamin,nomor_hp):
+    URLtmn = "http://www.aditmasih.tk/api_hans/show.php?nrp=" + nrpLama
+    r = requests.get(URLtmn)
+    data = r.json()
+    err = "Nggak nemu bos. Salah ketik mungkin."
+    nrp_lama=nrpLama
+    flag = data['flag']
+    if(flag == "1"):
+        r = requests.post("http://www.aditmasih.tk/api_hans/update.php", data={'nrp': nrp, 'nama': nama, 'jenis_kelamin': jenis_kelamin, 'nomor_hp' = nomor_hp, 'nrp_lama':nrp_lama})
+        data = r.json()
+        flag = data['flag']
+
+        if(flag == "1"):
+            return 'Data temen lo, si '+nrp_lama+'ini, berhasil diupdate.\n'
+        elif(flag == "0"):
+            return 'Data gagal diupdate bro. Mungkin lo belum konek ke WiFi TC.\n'
+
+    elif(flag == "0"):
+        return err
 
 
 # Post Request
@@ -72,10 +132,18 @@ def handle_message(event):
     sender = event.source.user_id #get usesenderr_id
     gid = event.source.sender_id #get group_id
     profile = line_bot_api.get_profile(sender)
-    data = text.split('-')
-    if(data[0] == 'tambah'):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = inputmhs(data[1],data[2],data[3])))
-
+    data = text.split('/')
+    if(data[0] == 'Tambah'):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = inputtmn(data[1],data[2],data[3],data[4])))
+    elif(data[0]=='Hapus'):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=hapusmhs(data[1])))
+    elif(data[0]=='Ganti'):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=updatemhs(data[1],data[2],data[3],data[4],data[5])))
+    elif(data[0]=='Semua'):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=allsmhs()))
+    elif(data[0]=='Menu'):
+        menu = "1. Lihat/[nrp]\nIni buat lo nyari data temen lo pake nrp\n\n2. Tambah/[nrp]/[nama]/[jenis kelamin(L/P)]/[no hp]\nSemisal lo punya temen baru, ini buat masukin ke data dia ke database lo, biar nggak lupa.\n\n3. Hapus/[nrp]\nIni buat menghapus temen lo yang mungkin lo ga suka.\n\n4. Ganti/[nrp lama]/[nrp baru]/[nama baru]/[jenis kelamin baru]/[no hp baru]\nSiapa tau temen lo uda berubah, pastiin datanya lo ganti juga.\n\n5. Semua\nIni buat nampilin seluruh data temen lo (kalo lo punya temen)."
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=menu))
 
 # def handle_message(event):
 #     text = event.message.text #simplify for receove message
