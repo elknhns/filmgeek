@@ -61,77 +61,77 @@ notes = {}
 #     elif(flag == "0"):
 #         return err
 
-# #INPUT DATA TMN
-# def inputtmn(nrp, nama, jenis_kelamin, nomor_hp):
-#     r = requests.post("http://www.aditmasih.tk/api_hans/insert.php", data={'nrp': nrp, 'nama': nama, 'jenis_kelamin': jenis_kelamin})
-#     data = r.json()
+#INPUT DATA TMN
+def inputtmn(nrp, nama, jenis_kelamin, nomor_hp):
+    r = requests.post("http://www.aditmasih.tk/api_hans/insert.php", data={'nrp': nrp, 'nama': nama, 'jenis_kelamin': jenis_kelamin})
+    data = r.json()
 
-#     flag = data['flag']
+    flag = data['flag']
    
-#     if(flag == "1"):
-#         return 'Data si '+ name +' berhasil dimasukin. Gila temen lu nambah.\n'
-#     elif(flag == "0"):
-#         return 'Data gagal dimasukin. Coba lagi deh.\n'
+    if(flag == "1"):
+        return 'Data si '+ name +' berhasil dimasukin. Gila temen lu nambah.\n'
+    elif(flag == "0"):
+        return 'Data gagal dimasukin. Coba lagi deh.\n'
 
-# def alltmn():
-#     r = requests.post("http://www.aditmasih.tk/api_hans/all.php")
-#     data = r.json()
+def alltmn():
+    r = requests.post("http://www.aditmasih.tk/api_hans/all.php")
+    data = r.json()
 
-#     flag = data['flag']
+    flag = data['flag']
    
-#     if(flag == "1"):
-#         hasil = ""
-#         for i in range(0,len(data['data_teman'])):
-#             nrp = data['data_teman'][int(i)]['nrp']
-#             nama = data['data_teman'][int(i)]['nama']
-#             jenis_kelamin = data['data_teman'][int(i)]['jenis_kelamin']
-#             nomor_hp = data['data_teman'][int(i)]['nomor_hp']
-#             hasil=hasil+str(i+1)
-#             hasil=hasil+".\nNrp : "
-#             hasil=hasil+nrp
-#             hasil=hasil+"\nNama : "
-#             hasil=hasil+nama
-#             hasil=hasil+"\nGender : "
-#             hasil=hasil+jenis_kelamin
-#             hasil=hasil+"\nNomor HP : "
-#             hasil=hasil+nomor_hp
-#             hasil=hasil+"\n"
-#         return hasil
-#     elif(flag == "0"):
-#         return 'Data gagal dimasukkan. Mungkin emang lo nggak punya teman.\n'
+    if(flag == "1"):
+        hasil = ""
+        for i in range(0,len(data['data_teman'])):
+            nrp = data['data_teman'][int(i)]['nrp']
+            nama = data['data_teman'][int(i)]['nama']
+            jenis_kelamin = data['data_teman'][int(i)]['jenis_kelamin']
+            nomor_hp = data['data_teman'][int(i)]['nomor_hp']
+            hasil=hasil+str(i+1)
+            hasil=hasil+".\nNrp : "
+            hasil=hasil+nrp
+            hasil=hasil+"\nNama : "
+            hasil=hasil+nama
+            hasil=hasil+"\nGender : "
+            hasil=hasil+jenis_kelamin
+            hasil=hasil+"\nNomor HP : "
+            hasil=hasil+nomor_hp
+            hasil=hasil+"\n"
+        return hasil
+    elif(flag == "0"):
+        return 'Data gagal dimasukkan. Mungkin emang lo nggak punya teman.\n'
 
 
-# #DELETE DATA MHS
-# def hapustmn(nrp):
-#     r = requests.post("http://www.aditmasih.tk/api_hans/delete.php", data = {'nrp': nrp})
-#     data = r.json()
+#DELETE DATA MHS
+def hapustmn(nrp):
+    r = requests.post("http://www.aditmasih.tk/api_hans/delete.php", data = {'nrp': nrp})
+    data = r.json()
 
-#     flag = data['flag']
+    flag = data['flag']
    
-#     if(flag == "1"):
-#         return 'Data '+ nrp +' berhasil dihapus. Selamat lo berhasil move on dari si dia.\n'
-#     elif(flag == "0"):
-#         return 'Data gagal dihapus bro. Gagal move on lo.\n'
+    if(flag == "1"):
+        return 'Data '+ nrp +' berhasil dihapus. Selamat lo berhasil move on dari si dia.\n'
+    elif(flag == "0"):
+        return 'Data gagal dihapus bro. Gagal move on lo.\n'
 
-# def updatetmn(nrpLama, nrp, nama, jenis_kelamin, nomor_hp):
-#     URLtmn = "http://www.aditmasih.tk/api_hans/show.php?nrp=" + nrpLama
-#     r = requests.get(URLtmn)
-#     data = r.json()
-#     err = "Nggak nemu bos. Salah ketik mungkin."
-#     nrp_lama=nrpLama
-#     flag = data['flag']
-#     if(flag == "1"):
-#         r = requests.post("http://www.aditmasih.tk/api_hans/update.php", data={'nrp': nrp, 'nama': nama, 'jenis_kelamin': jenis_kelamin, 'nomor_hp' = nomor_hp, 'nrp_lama':nrp_lama})
-#         data = r.json()
-#         flag = data['flag']
+def updatetmn(nrpLama, nrp, nama, jenis_kelamin, nomor_hp):
+    URLtmn = "http://www.aditmasih.tk/api_hans/show.php?nrp=" + nrpLama
+    r = requests.get(URLtmn)
+    data = r.json()
+    err = "Nggak nemu bos. Salah ketik mungkin."
+    nrp_lama=nrpLama
+    flag = data['flag']
+    if(flag == "1"):
+        r = requests.post("http://www.aditmasih.tk/api_hans/update.php", data={'nrp': nrp, 'nama': nama, 'jenis_kelamin': jenis_kelamin, 'nomor_hp' = nomor_hp, 'nrp_lama':nrp_lama})
+        data = r.json()
+        flag = data['flag']
 
-#         if(flag == "1"):
-#             return 'Data temen lo, si '+nama+'dengan nrp '+nrp_lama+'ini, berhasil diupdate.\n'
-#         elif(flag == "0"):
-#             return 'Data gagal diupdate bro. Mungkin lo belum konek ke WiFi TC.\n'
+        if(flag == "1"):
+            return 'Data temen lo, si '+nama+'dengan nrp '+nrp_lama+'ini, berhasil diupdate.\n'
+        elif(flag == "0"):
+            return 'Data gagal diupdate bro. Mungkin lo belum konek ke WiFi TC.\n'
 
-#     elif(flag == "0"):
-#         return err
+    elif(flag == "0"):
+        return err
 
 
 # Post Request
