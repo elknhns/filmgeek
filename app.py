@@ -166,6 +166,8 @@ def handle_message(event):
     elif(data[0] == 'Menu'):
         menu = "1. Cari-[nrp]\nIni buat lo nyari data temen lo pake nrp\n\n2. Tambah-[nrp]-[nama]-[jenis kelamin(L/P)]-[no hp]\nSemisal lo punya temen baru, ini buat masukin ke data dia ke database lo, biar nggak lupa.\n\n3. Hapus-[nrp]\nIni buat menghapus temen lo yang mungkin lo ga suka.\n\n4. Ganti-[nrp lama]-[nrp baru]-[nama baru]-[jenis kelamin baru]-[no hp baru]\nSiapa tau temen lo uda berubah, pastiin datanya lo ganti juga.\n\n5. Semua\nIni buat nampilin seluruh data temen lo (kalo lo punya temen)."
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = menu))
+    else:
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "Ga ketangkep bos"))
 
 # def handle_message(event):
 #     text = event.message.text #simplify for receove message
