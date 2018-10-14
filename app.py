@@ -94,7 +94,7 @@ def alltmn():
             hasil = hasil + "\nGender : "
             hasil = hasil + jenis_kelamin
             hasil = hasil + "\nNomor HP : "
-            hasil = hasil + nomor_hp
+            hasil = hasil + str(nomor_hp)
             hasil = hasil + "\n"
         return hasil
     elif(flag == "0"):
