@@ -167,7 +167,7 @@ def handle_message(event):
         menu = "Ini bot khusus buat daftar temen-temen lo. Lo bisa input printah-printah seperti ini:\n\n1. Cari-[nrp]\nIni buat lo nyari data temen lo pake nrp\n\n2. Tambah-[nrp]-[nama]-[jenis kelamin(L/P)]-[no hp]\nSemisal lo punya temen baru, ini buat masukin data dia ke daftar temen lo, biar nggak lupa.\n\n3. Hapus-[nrp]\nIni buat menghapus temen lo yang mungkin lo ga suka.\n\n4. Ganti-[nrp lama]-[nrp baru]-[nama baru]-[jenis kelamin baru]-[no hp baru]\nSiapa tau temen lo uda berubah, pastiin datanya lo ubah juga.\n\n5. Semua\nIni buat nampilin seluruh data temen lo (kalo lo punya temen).\n\nSebatas itu aja yang bisa lo printahin ke gua. Selain itu gua ga ngerti. Gua bukan jin."
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = menu))
     else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "Hah? Apa? Ga nangkep bos"))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "Hah? Apa"+profile.sender+"? Ga nangkep bos.\nKetik 'Help' aja kalau bingung.\nGa usah sungkan."))
 
 # def handle_message(event):
 #     text = event.message.text #simplify for receove message
